@@ -1,0 +1,123 @@
+html{
+    font-size:62.5%;
+    box-sizing:border-box;
+}
+*,*:before , *:after{
+    box-sizing:inherit;
+}
+
+body{
+    font-family: $roboto;
+    font-size: 1.6rem;
+    line-height: 1.5;
+}
+
+h1,h2, h3 {
+    margin: 0 0 2rem 0;
+    line-height: 1.5;
+}
+
+h1, h2 {
+    font-family: $fuentePrincipal;
+    font-weight: 700;
+}
+
+h3{
+    font-family: $roboto;
+}
+
+ul{
+    list-style: none;
+    margin : 0 ;
+    padding : 0 ;
+}
+
+a{
+    text-decoration: none;
+
+}
+
+
+.cabezera {
+    border-bottom: 2px solid $gris3;
+    padding: 1rem 0;
+}
+
+.contenedorHeader {
+    // max-width: 1200px;
+    padding:2rem;
+    width: 95%;
+    margin: 0, auto;
+    @media (min-width:$md){
+        display: flex;
+        // justify-content: space-between;
+    }
+}
+
+.logo{
+    color : white;
+    font-size: 4rem;
+    line-height: 0;
+    font-weight: 700;
+    font-family: $roboto;
+}
+
+.btn{
+    font-size: 1.5rem;
+}
+
+
+.menuDer{
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+    
+  
+}
+
+.menuDer>p{
+    margin-right: 2rem;
+    margin-top: 1.5rem;
+
+}
+
+.menuIzq{
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+    @media(max-width:$sm){
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+
+.buscarI {
+    border: 1px solid $gris3;
+    padding: 0.5rem;
+    min-width: 300px;
+    &:focus{
+        border:1px solid $gris3;
+    }
+}
+
+.navegacion {
+    padding-left: 1rem;
+    a{
+        font-size: 1.5rem;
+        margin-left: 2rem;
+        color: white;
+        font-family: $roboto;
+        &:hover{
+            text-decoration: none;
+            cursor: pointer;
+            color: $gris3;
+        }
+        &:last-of-type{
+            margin-right: 0;
+        }
+    }
+}
+

@@ -1,0 +1,71 @@
+.titulo{
+    text-align: center;
+    margin-top: 5rem;
+    color: darken($color: $gris2, $amount: 10);
+    letter-spacing:2px;
+    
+}
+
+.formulario{
+    min-width: 600px;
+    width: 95%;
+    margin: 5rem auto 0 auto;
+    
+
+    div {
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        label{
+            flex: 0 0 150px;
+            font-size: 1.8rem;
+        }
+    
+        input, textarea{
+            flex: 1;
+            padding: 1rem;
+            outline:none;
+            border: none;
+            &:focus{
+                border:1px solid $gris3!important;
+                outline:none;
+            }
+        }
+
+        
+        
+
+    }
+
+    input[type=submit]{
+        background-color: $naranja;
+        border:none;
+        padding: 1rem;
+        border-radius:0.2rem;
+        color: white;
+        font-size: 1.8rem;
+        text-transform: uppercase;
+        font-family:$roboto;
+        float: right;
+        flex-wrap: wrap;
+
+
+        &:hover{
+            background-color:darken($color: $naranja, $amount: 10%)
+        }
+    }
+
+    
+}
+
+fieldset{
+    // @include row;
+    padding: 4rem;
+    margin-bottom: 30px;
+    border: 1px solid $gris2;
+    border-radius:5px;
+    
+    legend{
+        width:auto;
+    }
+}
