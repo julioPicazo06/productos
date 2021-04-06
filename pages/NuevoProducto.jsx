@@ -5,6 +5,7 @@ import Layouts from '../components/layouts/Layouts'
 import Errores from '../components/layouts/ui/Errores'
 import useValidator from '../hooks/useValidator'
 import { FirebaseContext } from '../firebase'
+import FileUploader from 'react-firebase-file-uploader'
 import Router, { useRouter } from 'next/router'
 import { validarCrearProducto } from '../validar/validarCrearProducto'
 
@@ -17,11 +18,12 @@ descripcion : ''
 }
 
 
-
-
 const NuevoProducto = () => {
   const [error, setError] = useState(false)
-  
+  const [nombreImagen, setNombreImagen] = useState('')
+  const [subiendo, setSubiendo] = useState(false)
+  const [progreseo, setProgreseo] = useState(0)
+  const [urlImagen, setUrlImagen] = useState('')
   const router = useRouter()
   const crearProducto = async ()=> {
     // si el usuario no esta autenticado 
@@ -32,6 +34,7 @@ const NuevoProducto = () => {
     const producto = {
         nombreProducto ,
         empresa ,
+        imagen : urlImagen,
         url ,
         descripcion ,
         votos : 0,
@@ -39,13 +42,35 @@ const NuevoProducto = () => {
     }
 
     firebase.db.collection('productos').add(producto)
-
+    return router.push('/')
     // insertarlo en la base de datos
     
 
-
-
   }
+
+const handleUploadStart =()=> {
+  setProgreseo(0)
+  setSubiendo(true)
+}
+const handleUploadError =(error)=> {
+  setSubiendo(error)
+  console.log(error)
+}
+const handleUploadSuccess =(nombre)=> {
+  setProgreseo(100)
+  setSubiendo(false)
+  setNombreImagen(nombre)
+  firebase
+    .storage
+    .ref("productos")
+    .child(nombre)
+    .getDownloadURL()
+    .then(url=> {
+      console.log(url)
+      setUrlImagen(url)
+    })
+}
+const handleProgress =(progreso)=>setProgreseo({progreso}) 
 
   const { usuario , firebase } = useContext(FirebaseContext)
 
@@ -116,28 +141,27 @@ const NuevoProducto = () => {
         
         
         
-      {
-        /* 
-              <div className="form-group row">
+    
+          <div className="form-group row">
           <label htmlFor="imagen">Imagen</label>
-          <input
+          <FileUploader
+          accept="image/*"
             type="file"
             id="imagen"
             name="imagen"
-            value={imagen}
-            onChange={(e) => handleChange(e)}
-            onBlur={handleBlur}  />
+            randomizeFilename
+            storageRef={firebase.storage.ref("productos")}
+            onUploadStart={handleUploadStart}
+            onUploadError={handleUploadError}
+            onUploadSuccess={handleUploadSuccess}
+            onProgress={handleProgress}
+            />
             
         </div>
         
-        */
-      }
-        { /*
-          errores.imagen && (
-              <Errores errores={errores.imagen}/> )
-        */
-            }
-
+    
+   
+      
 
         <div className="form-group row">
         <label htmlFor="url">Url</label>

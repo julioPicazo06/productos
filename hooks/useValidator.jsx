@@ -10,7 +10,7 @@ const useValidator = (stateInicial , validar , fn) => {
 
     useEffect(() => {
         if(submitForm){
-            const noErrores = Object.keys(errores).length===0
+            const noErrores = Object.keys(errores).length === 0
             if(noErrores){
                 fn()
             }

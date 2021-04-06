@@ -48,8 +48,9 @@ a{
     padding:2rem;
     width: 95%;
     margin: 0, auto;
-    @media (min-width:$md){
+    @media (min-width:$sm){
         display: flex;
+     
         // justify-content: space-between;
     }
 }
@@ -71,6 +72,11 @@ a{
     display: flex;
     margin-left: auto;
     align-items: center;
+    @media (max-width:$sm){
+        flex-direction: row;
+        justify-content: justify;
+        
+    }
     
   
 }
@@ -78,6 +84,7 @@ a{
 .menuDer>p{
     margin-right: 2rem;
     margin-top: 1.5rem;
+    
 
 }
 

@@ -5,3 +5,8 @@
     margin-right: -15px;
     margin-left: -15px;
 }
+
+
+@mixin oscuro ($c , $p){
+    background-color:darken($color: $c, $amount: $p)
+}
